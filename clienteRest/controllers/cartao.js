@@ -27,4 +27,8 @@ module.exports = function(app) {
             res.status(201).json(response);
             return;
         });
+		
+		app.get("/", function(req, res){
+			res.send("Serviço funcionando");
+		});
       }
