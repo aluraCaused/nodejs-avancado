@@ -1,0 +1,3 @@
+curl -X POST http://localhost:3000/upload/imagem 
+--data-binary @imagem.png -H "Content-type: application/octet-stream" 
+-H "filename: teste-upload.jpg" -v
