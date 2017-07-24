@@ -16,6 +16,23 @@ module.exports = function(app){
 
         });
     })
+	
+	app.get("/pagamentos/pagamento/:id", function(req, res){
+		var id = req.params.id;
+		var connection = app.persistencia.connectionFactory();
+        var pagamentoDAO = new app.persistencia.PagamentoDAO(connection);
+		
+		pagamentoDAO.buscarPorId(id,function(erro, resultado){
+			if(erro){
+                console.log(erro);
+                res.status(500).send(erro);
+                return;
+            }
+            console.log("Pagamento encontrado: "+JSON.stringify(resultado));
+            res.json(resultado);
+		})
+		
+	})
 
     app.post("/pagamentos/pagamento", function(req, res){
         var body = req.body;
